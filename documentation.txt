@@ -1,0 +1,20 @@
+Documentation
+NAME: AI Detector Tester
+This app was built for the purpose of testing several AIDetectors, in connection with a bachelor thesis whether it's possible to disclose AI-images.
+
+Currently the app can upload images to 4 detectors simultaneous: IsitAI.com, Illuminaty.ai, contentatscale.com and hivemoderation.com
+The results are then saved in a SQL-database.
+
+The upload procces of images are automated with Selenium. 
+
+The app runs on a flask framework, making it very easy to view the saved results from different pages that can be configured to handle the data in different ways from a web browser locally.
+
+Getting Started
+Installation: How to download and install the app.
+Download the folder, then run the app from a codeeditor like VSCode or Pycharm after you have installed all the requaied python packages.
+
+Troubleshooting
+Common issues and how to solve them.
+
+Contact
+thomasafure@gmail.com

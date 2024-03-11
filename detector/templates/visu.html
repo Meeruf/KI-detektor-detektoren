@@ -1,0 +1,227 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+
+<script>
+    // JavaScript function to show a div at the mouse position
+    function showImg(event, imgurl) {
+        // Create the div element
+        const imgDiv = document.createElement('div');
+        imgDiv.className = 'imgPopUp'
+        imgDiv.style.width = '700px';
+        imgDiv.style.height = '480px';
+        imgDiv.style.backgroundColor = 'gray';
+        imgDiv.style.position = 'absolute'; // Use absolute positioning
+        imgDiv.style.zIndex = '1000'
+        imgDiv.innerHTML = `
+        <img src="${imgurl}">
+        `
+
+        imgDiv.style.left = `20%`;
+        imgDiv.style.top = `20%`;
+
+        // Create the close button
+        const closeButton = document.createElement('button');
+        closeButton.innerText = 'X';
+        closeButton.style.position = 'absolute';
+        closeButton.style.right = '-5px';
+        closeButton.style.top = '-10px';
+
+        // Append the close button to the div
+        imgDiv.appendChild(closeButton);
+
+        // Add the div to the body
+        document.body.appendChild(imgDiv);
+
+        // Function to close the div
+        closeButton.addEventListener('click', function() {
+            imgDiv.style.display = 'none'; // Hide the div
+        });
+
+    // Remove event listener if you want the div to stop following the mouse after it is displayed
+    // You can call this function after a specific event or condition
+    // document.removeEventListener('mousemove', updatePosition);
+    }
+
+    // Call showImg() when needed, for example on a button click or another event
+    // showImg();
+
+</script>
+
+<style>
+
+    .imgPopUp {
+        display: flex;
+    }
+
+    .imgPopUp img {
+        margin: auto;
+        height: 90%;
+    }
+
+    .mainWrapper {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+        height: 100vh;
+        width: 100vw;
+    }
+
+    .titleWrapper {
+        background-color: rgb(255, 255, 255);
+        padding: .3rem 1rem;
+        grid-column: span 2;
+
+    }
+
+    .titleWrapper h3 {
+        color: black;
+    }
+
+
+    .realWrapper {
+        display: grid;
+        grid-template-columns: calc(100vw - 300px) 300px;
+        grid-template-rows: 40px calc(100vh - 40px);
+        width: 100vw;
+        height: 100vh;
+        column-gap: 1rem;
+
+    }
+
+    .realWrapper2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 1rem;
+
+    }
+
+    .nothing {grid-area: n;}
+    .title_y {grid-area: y; writing-mode: vertical-rl; padding: 1rem .3rem;}
+    .title_x {grid-area: x; padding: .3rem 4rem;}
+    .innerGraph {grid-area: inner; background: pink;}
+
+    .realGraph {
+        display: grid;
+        grid-template-areas: 'n x x'
+                             'y inner inner'
+                             'y inner inner';
+        grid-template-columns: auto 1fr 1fr;
+        grid-template-rows: auto 1fr 1fr;
+        padding-bottom: 1rem;
+    }
+    
+    .innerGraph {
+        display: flex;
+        padding: .4rem;
+        background: rgb(228, 228, 228);
+        width: calc(100% - .8rem);
+        height: calc(100% - .8rem);
+
+    }
+
+    .innerGraph .innerWrapper {
+        margin: .4rem;
+        padding-top: 5px;
+        display: flex;
+        width: calc(100% - .8rem);
+        height: calc(100% - .8rem - 5px);
+        background: rgb(228, 228, 228);
+        border: .4px solid gray;
+
+
+    }
+
+    .innerGraph .vertical:first-child {
+        margin-left: auto;
+    }
+
+    .innerGraph .vertical:last-child {
+        margin-right: auto;
+    }
+
+    .innerGraph .dot {
+        position: absolute;
+        left: -2.5px;
+        border-radius: 100px;
+        width: 8px;
+        height: 8px;
+        z-index: 1000;
+    }
+
+    .isitAI {
+        background: rgb(147, 75, 75);
+    }
+
+    .contentatscale {
+        background: rgb(95, 147, 75);
+    }
+
+    .illuminarty {
+        background: rgb(75, 125, 147);
+    }
+
+    .hive {
+        background: rgb(141, 75, 147);
+    }
+
+    .settingsWrapper {
+        padding-top: 4rem;
+    }
+    .settingsWrapper h5 {
+        width: fit-content;
+        color: white;
+        padding: .4rem 1rem;
+        margin: .2rem 0;
+    }
+
+
+
+</style>
+
+
+
+<div class="mainWrapper">
+    <div class="realWrapper">
+        <div class="titleWrapper">ASD</div>
+        <div class="realGraph">
+            <div class="nothing"></div>
+            <h4 class="title_x">Tittel X {{ context['width'] }} </h4>
+            <h4 class="title_y">Tittel Y</h4>
+            <div class="innerGraph">
+                <div class="innerWrapper">
+                    {% for img in context['images'] %}
+                    <div class="vertical" style="position: relative; height: 100%; min-width: {{ context['width'] }}%;">
+
+                    <div style="position: absolute; bottom: {{ img['isitAI.com'] }}%;" class="dot isitAI" onclick="showImg(event, `{{ img['URL'] }}`)"></div>
+                    <div style="bottom: {{ img['illuminarty.ai'] }}%;" class="dot illuminarty" onclick="showImg(event, `{{ img['URL'] }}`)"></div>
+                    <div style="bottom: {{ img['contentatscale.ai'] }}%;" class="dot contentatscale" onclick="showImg(event, `{{ img['URL'] }}`)"></div>
+                    <!--<div style="bottom: {{ img['hivemoderation.com'] }}%;" class="dot hive" onclick="showImg(event, `{{ img['URL'] }}`)"></div>-->
+                    </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+        </div>
+        <div class="settingsWrapper">
+            <h5 class="isitAI">IsitAI</h5>
+            <h5 class="illuminarty">Illuminarty</h5>
+            <h5 class="contentatscale">Contentatscale</h5>
+            <h5 class="hive">Hive Moderation</h5>
+
+        </div>
+    </div>
+    <div class="realWrapper2" style="padding: 3rem;">
+        {% for img in context['images'] %}
+        <div style="width: 100%; height: 100%;">
+        <img style="max-width: 100%; max-height: 90%;" src="{{ img.URL }}">
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+
+
+{% endblock %}

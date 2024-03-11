@@ -1,0 +1,216 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<style>
+    main {
+        background-color: rgb(209, 209, 209);
+        gap: 1rem;
+        padding: 0 1rem;
+    }
+
+    .mainWrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        height: fit-content;
+        padding: 2rem;
+
+    }
+
+    .mainWrapper2 {
+        display: flex;
+        flex-direction: column;
+        height: fit-content;
+        padding: 0 0 5rem 0;
+
+    }
+
+    .box1, .box2 {
+        margin: auto;
+        padding: 2rem 2rem 1rem 2rem;
+        background-color: white;
+        border-radius: .5rem;
+        box-shadow: 0 0 30px 0 rgba(84, 84, 84, 0.112);
+        height: fit-content;
+    }
+
+    .bubble {
+        background-color: rgb(239, 239, 239);
+        padding: .2rem .8rem;
+        border-radius: .3rem;
+    }
+
+    .corrWrapper {
+        margin: 2rem auto auto auto;
+        padding: 1rem;
+        border-radius: .5rem;
+        background-color: white;
+    }
+
+    .corrWrapper table td,
+    .corrWrapper table th {
+        padding: .2rem .3rem;
+    }
+
+    .corrWrapper h3 {
+        padding: .5rem 1rem;
+    }
+
+    table {
+    border-collapse: collapse; /* Collapses the border between table cells */
+    width: 100%; /* Optional: Sets the width of the table */
+    }
+
+    table, th, td {
+    border: 1px solid black; /* Sets the border around the table and cells */
+    }
+
+    th, td {
+    padding: 8px; /* Adds some padding inside the cells */
+    text-align: left; /* Aligns text to the left; can be adjusted as needed */
+    }
+
+    thead {
+    background-color: #f2f2f2; /* Sets a background color for the table header */
+    }
+
+    tr:nth-child(even) {
+    background-color: #ddd; /* Adds a background color to every even row */
+    }
+
+</style>
+
+<main>
+    <div class="mainWrapper">
+        <div class="box1">
+            <div style="margin-bottom: 1rem; margin-left: .5rem;">
+                <p style="font-size: 18px;">Gjennomsnittlig sannsynlighet for KI basert på <strong>{{ context['total_real_imgs'] }}</strong> uredigerte bilder</p>
+            </div>
+            <div style="display: flex; gap: .5rem; width: fit-content; margin: 2rem auto .5rem auto;">
+                <div class="bubble">
+                    <h4>IsitAI</h4>
+                    <p>{{ context['isitAI.com'] }}%</p>
+                </div>
+                <div class="bubble">
+                    <h4>Illuminarty</h4>
+                    <p>{{ context['illuminarty.ai'] }}%</p>
+                </div>
+                <div class="bubble">
+                    <h4>Contentatscale</h4>
+                    <p>{{ context['contentatscale.ai'] }}%</p>
+                </div>
+                <div class="bubble">
+                    <h4>Hivemoderation</h4>
+                    <p>{{ context['hivemoderation.com'] }}%</p>
+                </div>
+            </div>
+            <div style="margin-top: 1rem">
+                <img src="data:image/png;base64,{{ context['unedited_plot'] }}" alt="Barplot Image">
+            </div>
+        </div>
+        <div class="box2">
+            <div style="margin-bottom: 1rem; margin-left: .5rem;">
+                <p style="font-size: 18px;">Gjennomsnittlig sannsynlighet for KI basert på <strong>{{ context['total_edited_imgs'] }}</strong> redigerte bilder</p>
+            </div>
+            <div style="display: flex; gap: .5rem; width: fit-content; margin: 2rem auto .5rem auto;">
+                <div class="bubble">
+                    <h4>IsitAI</h4>
+                    <p>{{ context['edited_isitAI.com'] }}%</p>
+                </div>
+                <div class="bubble">
+                    <h4>Illuminarty</h4>
+                    <p>{{ context['edited_illuminarty.ai'] }}%</p>
+                </div>
+                <div class="bubble">
+                    <h4>Contentatscale</h4>
+                    <p>{{ context['edited_contentatscale.ai'] }}%</p>
+                </div>
+                <div class="bubble">
+                    <h4>Hivemoderation</h4>
+                    <p>{{ context['edited_hivemoderation.com'] }}%</p>
+                </div>
+            </div>
+            <div style="margin-top: 1rem">
+                <img src="data:image/png;base64,{{ context['edited_plot'] }}" alt="Barplot Image">
+            </div>
+        </div>
+    </div>
+    <div class="mainWrapper">
+        <div class="box1">
+            <div style="margin-bottom: 1rem; margin-left: .5rem;">
+                <p style="font-size: 18px;">Gjennomsnittlig sannsynlighet for KI basert på <strong>{{ context['total_KI_imgs'] }}</strong> KI-genererte bilder</p>
+            </div>
+            <div style="display: flex; gap: .5rem; width: fit-content; margin: 2rem auto .5rem auto;">
+                <div class="bubble">
+                    <h4>IsitAI</h4>
+                    <p>{{ context['KI_isitAI.com'] }}%</p>
+                </div>
+                <div class="bubble">
+                    <h4>Illuminarty</h4>
+                    <p>{{ context['KI_illuminarty.ai'] }}%</p>
+                </div>
+                <div class="bubble">
+                    <h4>Contentatscale</h4>
+                    <p>{{ context['KI_contentatscale.ai'] }}%</p>
+                </div>
+                <div class="bubble">
+                    <h4>Hivemoderation</h4>
+                    <p>{{ context['KI_hivemoderation.com'] }}%</p>
+                </div>
+            </div>
+            <div style="margin-top: 1rem;">
+                <img src="data:image/png;base64,{{ context['KI_plot'] }}" alt="Barplot Image">
+            </div>
+        </div>
+        <div class="box2">
+            <div style="margin-bottom: 1rem; margin-left: .5rem;">
+                <p style="font-size: 18px;">Gjennomsnittlig sannsynlighet for KI basert på <strong>{{ context['total_RE_imgs'] }}</strong> uredigerte boligfoto</p>
+            </div>
+            <div style="display: flex; gap: .5rem; width: fit-content; margin: 2rem auto .5rem auto;">
+                <div class="bubble">
+                    <h4>IsitAI</h4>
+                    <p>{{ context['RE_isitAI.com'] }}%</p>
+                </div>
+                <div class="bubble">
+                    <h4>Illuminarty</h4>
+                    <p>{{ context['RE_illuminarty.ai'] }}%</p>
+                </div>
+                <div class="bubble">
+                    <h4>Contentatscale</h4>
+                    <p>{{ context['RE_contentatscale.ai'] }}%</p>
+                </div>
+                <div class="bubble">
+                    <h4>Hivemoderation</h4>
+                    <p>{{ context['RE_hivemoderation.com'] }}%</p>
+                </div>
+            </div>
+            <div style="margin-top: 1rem;">
+                <img src="data:image/png;base64,{{ context['RE_plot'] }}" alt="Barplot Image">
+            </div>
+        </div>
+    </div>
+    <div class="mainWrapper2">
+        <div class="corrWrapper">
+            <h3>Ekte uredigerte bilder</h3>
+            {{ context['corr_html_unedited'] | safe }}
+        </div>
+        <div class="corrWrapper">
+            <h3>Korrelasjon mellom detektorer for ekte uredigerte bilder</h3>
+            {{ context['detectors_only_unedited_corr'] | safe }}
+        </div>
+
+        <div class="corrWrapper">
+            <h3>Korrelasjon mellom detektorer for ekte redigerte bilder</h3>
+            {{ context['detectors_only_edited_corr'] | safe }}
+        </div>
+        <div class="corrWrapper">
+            <h3>Korrelasjon mellom detektorer for KI-bilder</h3>
+            {{ context['detectors_only_ai_corr'] | safe }}
+        </div>
+        <div class="corrWrapper">
+            <h3>Korrelasjon mellom detektorer for boligfoto</h3>
+            {{ context['detectors_only_re_corr'] | safe }}
+        </div>
+    </div>
+</main>
+{% endblock %}

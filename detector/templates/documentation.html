@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+
+
+{% block content %}
+
+<style>
+
+    main {
+        display: flex;
+        height: 100vh;
+        width: 100vw;
+        background-color: rgb(209, 209, 209);
+    }
+
+    .mainWrapper {
+        margin: auto;
+        display: flex;
+        width: 800px;
+        gap: 2rem;
+        background-color: white;
+        border-radius: .5rem;
+        
+    }
+
+    article {
+        padding: 1rem;
+    }
+
+</style>
+
+<main>
+    <div class="mainWrapper">
+        <article>
+            <h2>Documentation</h2><br>
+            <p><strong>NAME:</strong> AI Detector Tester</p><br>
+            <p>This app was built for the purpose of testing several AIDetectors, in connection with a bachelor thesis whether it's possible to disclose AI-images.</p><br>
+            <p></p>
+            <p>Currently the app can upload images to 4 detectors simultaneous: IsitAI.com, Illuminaty.ai, contentatscale.com and hivemoderation.com</p><br>
+            
+            <p>- The results are then saved in a SQL-database.</p>
+            <p>- The upload procces of images are automated with Selenium. </p><br>
+
+            <p>The app runs on a flask framework, making it very easy to view the saved results from different pages that can be configured to handle the data in different ways from a web browser locally.</p><br>
+
+            <h3>Getting Started</h3>
+            <p><strong>Installation:</strong> How to download and install the app.</p><br>
+            Download the folder, then run the app from a codeeditor like VSCode or Pycharm after you have installed all the requaied python packages.</p><br>
+
+            <h3>Troubleshooting</h3>
+            <p>Kommer</p><br>
+
+            <h3>Contact</h3>
+            <p>thomasafure@gmail.com</p>
+            
+        </article>
+
+    </div>
+</main>
+
+
+{% endblock %}

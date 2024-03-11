@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<style>
+    .filterWrapper {
+        width: 100%;
+        min-height: 200px;
+    }
+
+    .extremesWrapper .box1 {grid-area: box1; background-color: rgb(230, 230, 230);}   
+    .extremesWrapper .box2 {grid-area: box2; background-color: rgb(230, 230, 230);} 
+    .extremesWrapper {
+        display: grid;
+        grid-template-areas: 'box1 box2';
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        padding: 1rem;
+    }
+
+    .extremesWrapper .box1  h2,
+    .extremesWrapper .box2  h2 {
+        padding: 1rem;
+    }
+
+    .extremesWrapper .box1 .imgWrapper,
+    .extremesWrapper .box2 .imgWrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .extremesWrapper .box1 .imgWrapper img,
+    .extremesWrapper .box2 .imgWrapper img {
+        width: 100%;
+    }
+
+
+</style>
+<div class="filterWrapper">
+    <h2 style="padding: 1rem 3rem 0rem 3rem;">FILTER</h2>
+    <form style="padding: 1rem 3rem;">
+        <div style="display: flex; gap: .5rem;"><input type=checkbox><p>Utelukk boligfoto</p></div>
+    </form>
+</form>
+</div>
+<div class="extremesWrapper">
+    <div class="box1">
+        <h2>Under 1%</h2>
+        <div class="imgWrapper">
+            {% for img in context['img_low'] %}
+            <img src="{{ url_for('static', filename=img.file_path) }}">
+            {% endfor %}
+        </div>
+    </div>
+    <div class="box2">
+        <h2>Over 90%</h2>
+        <div class="imgWrapper">
+            {% for img in context['img_high'] %}
+            <img src="{{ url_for('static', filename=img.file_path) }}">
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}  

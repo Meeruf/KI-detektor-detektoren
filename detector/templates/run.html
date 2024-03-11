@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<style>
+    .buttonWrapper {
+        width: 100vw;
+        height: 300px;
+        display: flex;
+    }
+    .buttonWrapper form {
+        margin: auto;
+    }
+
+    .buttonWrapper form button {
+        background-color: rgb(51, 51, 51);
+        color: white;
+        padding: .5rem 2rem;
+        font-weight: 600;
+    }
+
+</style>
+<div class="buttonWrapper">
+<form method="POST">
+    <input hidden value="{{ csrf_token() }}" name="csrf_token" id="'csrf_token">
+    <button>START DETEKTORER</button>
+</form>
+</div>
+{% endblock %}

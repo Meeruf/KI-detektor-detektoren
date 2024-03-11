@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<style>
+    .mainWrapper {
+        height: 100vh;
+        width: 100vw;
+        padding: 5;
+        background-color: lightcyan;
+    }
+
+    .graphWrapper {
+        width: 100%;
+        height: 100%;
+        border-left: 2px solid gray;
+        border-bottom: 2px solid gray;
+    }
+</style>
+
+<div class="mainWrapper">
+    <div class="graphWrapper flex">
+        {% for data in context[]'data'] %}
+        <div class="verticalLine">
+            <div class="dotWrapper">
+                <div class="dot">
+
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+
+{% endblock %}
